@@ -95,6 +95,7 @@ class _HomePageState extends State<HomePage> {
             children: [
               _buildPopupMenuButton(
                 label: '카테고리별 검색',
+
                 onPressed: () {
                   Navigator.push(
                     context,
@@ -102,6 +103,7 @@ class _HomePageState extends State<HomePage> {
                         builder: (context) => const CategoryPage()),
                   );
                 },
+
               ),
               const SizedBox(height: 15),
               _buildPopupMenuButton(
@@ -110,7 +112,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const TemporaryBoardPage()),
+                        builder: (context) =>  TemporaryBoardPage()),
                   );
                 },
               ),
@@ -121,7 +123,7 @@ class _HomePageState extends State<HomePage> {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => const NotTemporaryBoardPage()),
+                        builder: (context) =>  NotTemporaryBoardPage()),
                   );
                 },
               ),

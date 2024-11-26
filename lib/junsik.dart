@@ -16,39 +16,43 @@ class NotTemporaryBoardPage extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: const Color.fromARGB(255, 92, 6, 31),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
-
             Stack(
               children: [
-
-                Container(
-                  width: double.infinity,
-                  height: 300,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(8),
-                    image: const DecorationImage(
-                      image: AssetImage('assets/smartphone.png'), // 더미 이미지 경로
-                      fit: BoxFit.cover,
+                // 이미지 클릭 가능하도록 GestureDetector로 감싸기
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PostDetailPage(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 300,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(8),
+                      image: const DecorationImage(
+                        image: AssetImage('assets/smartphone.png'),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
-
                 Positioned(
                   bottom: 10,
                   right: 10,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => PostDetailPage(),
-                        ),
-                      );
+
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -69,20 +73,29 @@ class NotTemporaryBoardPage extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(height: 20), // 항목 사이 간격
-
+            const SizedBox(height: 20),
             Stack(
               children: [
-                // 이미지
-                Container(
-                  width: double.infinity,
-                  height: 300,
-                  decoration: BoxDecoration(
-                    border: Border.all(color: Colors.grey),
-                    borderRadius: BorderRadius.circular(8),
-                    image: const DecorationImage(
-                      image: AssetImage('assets/headset.png'), // 두 번째 더미 이미지 경로
-                      fit: BoxFit.cover,
+                // 이미지 클릭 가능하도록 GestureDetector로 감싸기
+                GestureDetector(
+                  onTap: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => PostDetailPage(),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    width: double.infinity,
+                    height: 300,
+                    decoration: BoxDecoration(
+                      border: Border.all(color: Colors.grey),
+                      borderRadius: BorderRadius.circular(8),
+                      image: const DecorationImage(
+                        image: AssetImage('assets/headset.png'),
+                        fit: BoxFit.cover,
+                      ),
                     ),
                   ),
                 ),
@@ -91,11 +104,6 @@ class NotTemporaryBoardPage extends StatelessWidget {
                   right: 10,
                   child: ElevatedButton(
                     onPressed: () {
-                      Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(builder: (context) => PostDetailPage(),
-                        ),
-                      );
 
                     },
                     style: ElevatedButton.styleFrom(

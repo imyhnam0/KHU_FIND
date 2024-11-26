@@ -24,6 +24,11 @@ class _CategoryPageState extends State<CategoryPage> {
     super.initState();
     filteredItems = items;
   }
+  void _deleteItem(int index) {
+    setState(() {
+      filteredItems.removeAt(index);
+    });
+  }
 
   void _filterItems() {
     setState(() {
@@ -52,7 +57,13 @@ class _CategoryPageState extends State<CategoryPage> {
           '카테고리',
           style: TextStyle(fontWeight: FontWeight.bold, fontSize: 22, color: Colors.white),
         ),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: const Color.fromARGB(255, 92, 6, 31),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
       body: Column(
         children: [
@@ -94,31 +105,36 @@ class _CategoryPageState extends State<CategoryPage> {
                   padding: const EdgeInsets.symmetric(vertical: 10, horizontal: 16),
                   child: Stack(
                     children: [
-                      // 이미지 컨테이너
-                      Container(
-                        width: double.infinity,
-                        height: 300,
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(8),
-                          border: Border.all(color: Colors.grey),
-                          image: DecorationImage(
-                            image: AssetImage(item['image']),
-                            fit: BoxFit.cover,
+                      // 이미지 컨테이너 (클릭 가능하도록 GestureDetector 추가)
+                      GestureDetector(
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => PostDetailPage(),
+                            ),
+                          );
+                        },
+                        child: Container(
+                          width: double.infinity,
+                          height: 300,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(8),
+                            border: Border.all(color: Colors.grey),
+                            image: DecorationImage(
+                              image: AssetImage(item['image']),
+                              fit: BoxFit.cover,
+                            ),
                           ),
                         ),
                       ),
-
+                      // 수정 버튼
                       Positioned(
                         top: 10,
                         right: 10,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PostDetailPage(),
-                              ),
-                            );
+
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
@@ -130,21 +146,16 @@ class _CategoryPageState extends State<CategoryPage> {
                           child: const Text('수정'),
                         ),
                       ),
-
+                      // 삭제 버튼
                       Positioned(
                         bottom: 10,
                         right: 10,
                         child: ElevatedButton(
                           onPressed: () {
-                            Navigator.push(
-                              context,
-                              MaterialPageRoute(
-                                builder: (context) => PostDetailPage(),
-                              ),
-                            );
+                            _deleteItem(index);
                           },
                           style: ElevatedButton.styleFrom(
-                            backgroundColor: Colors.deepPurple,
+                            backgroundColor: Colors.red,
                             foregroundColor: Colors.white,
                             shape: RoundedRectangleBorder(
                               borderRadius: BorderRadius.circular(8),
