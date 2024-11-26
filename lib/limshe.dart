@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'postdetail.dart';
 
 class TemporaryBoardPage extends StatelessWidget {
   const TemporaryBoardPage({super.key});
@@ -15,9 +16,16 @@ class TemporaryBoardPage extends StatelessWidget {
             color: Colors.white,
           ),
         ),
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: const Color.fromARGB(255, 92, 6, 31),
+        leading: IconButton(
+          icon: const Icon(Icons.arrow_back, color: Colors.white),
+          onPressed: () {
+            Navigator.pop(context);
+          },
+        ),
       ),
-      body: Padding(
+      body:
+      Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(
           children: [
@@ -27,12 +35,12 @@ class TemporaryBoardPage extends StatelessWidget {
 
                 Container(
                   width: 300,
-                  height: 100,
+                  height: 300,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(8),
                     image: const DecorationImage(
-                      image: AssetImage('assets/1.png'), // 더미 이미지 경로
+                      image: AssetImage('assets/headset.png'), // 더미 이미지 경로
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -40,12 +48,16 @@ class TemporaryBoardPage extends StatelessWidget {
 
                 ElevatedButton(
                   onPressed: () {
-                    print('등록 버튼 클릭');
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => PostDetailPage(),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                    minimumSize: const Size(20, 100), // 최소 크기 지정
-                    backgroundColor: Colors.deepPurple,
+                    minimumSize: const Size(20, 300), // 최소 크기 지정
+                    backgroundColor: Colors.red,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),
@@ -71,12 +83,12 @@ class TemporaryBoardPage extends StatelessWidget {
 
                 Container(
                   width: 300,
-                  height: 100,
+                  height: 300,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(8),
                     image: const DecorationImage(
-                      image: AssetImage('assets/1.png'), // 두 번째 더미 이미지 경로
+                      image: AssetImage('assets/wallet.png'), // 두 번째 더미 이미지 경로
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -84,12 +96,16 @@ class TemporaryBoardPage extends StatelessWidget {
 
                 ElevatedButton(
                   onPressed: () {
-                    print('등록 버튼 클릭');
+                    Navigator.pushReplacement(
+                      context,
+                      MaterialPageRoute(builder: (context) => PostDetailPage(),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 20),
-                    minimumSize: const Size(20, 100), // 최소 크기 지정
-                    backgroundColor: Colors.deepPurple,
+                    minimumSize: const Size(20, 300), // 최소 크기 지정
+                    backgroundColor: Colors.red,
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(8),
                     ),

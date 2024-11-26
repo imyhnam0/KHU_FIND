@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'postdetail.dart';
 
 class CategoryPage extends StatefulWidget {
   const CategoryPage({super.key});
@@ -8,11 +9,11 @@ class CategoryPage extends StatefulWidget {
 }
 
 class _CategoryPageState extends State<CategoryPage> {
-  final List<String> categories = ['전화기', '순대', '에어팟'];
+  final List<String> categories = ['전화기', '지갑', '에어팟'];
   final List<Map<String, dynamic>> items = [
-    {'image': 'assets/1.png', 'category': '전화기'},
-    {'image': 'assets/1.png', 'category': '에어팟'},
-    {'image': 'assets/1.png', 'category': '순대'},
+    {'image': 'assets/headset.png', 'category': '전화기'},
+    {'image': 'assets/smartphone.png', 'category': '에어팟'},
+    {'image': 'assets/wallet.png', 'category': '지갑'},
   ];
 
   List<bool> selectedCategories = [false, false, false];
@@ -96,7 +97,7 @@ class _CategoryPageState extends State<CategoryPage> {
                       // 이미지 컨테이너
                       Container(
                         width: double.infinity,
-                        height: 150,
+                        height: 300,
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(8),
                           border: Border.all(color: Colors.grey),
@@ -112,7 +113,12 @@ class _CategoryPageState extends State<CategoryPage> {
                         right: 10,
                         child: ElevatedButton(
                           onPressed: () {
-                            print('${item['category']} 수정 클릭');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PostDetailPage(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.white,
@@ -130,7 +136,12 @@ class _CategoryPageState extends State<CategoryPage> {
                         right: 10,
                         child: ElevatedButton(
                           onPressed: () {
-                            print('${item['category']} 삭제 클릭');
+                            Navigator.push(
+                              context,
+                              MaterialPageRoute(
+                                builder: (context) => PostDetailPage(),
+                              ),
+                            );
                           },
                           style: ElevatedButton.styleFrom(
                             backgroundColor: Colors.deepPurple,

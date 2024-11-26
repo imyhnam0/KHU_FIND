@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'postdetail.dart';
 
 class NotTemporaryBoardPage extends StatelessWidget {
   const NotTemporaryBoardPage({super.key});
@@ -27,12 +28,12 @@ class NotTemporaryBoardPage extends StatelessWidget {
 
                 Container(
                   width: double.infinity,
-                  height: 150,
+                  height: 300,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(8),
                     image: const DecorationImage(
-                      image: AssetImage('assets/1.png'), // 더미 이미지 경로
+                      image: AssetImage('assets/smartphone.png'), // 더미 이미지 경로
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -43,7 +44,11 @@ class NotTemporaryBoardPage extends StatelessWidget {
                   right: 10,
                   child: ElevatedButton(
                     onPressed: () {
-                      print('등록 버튼 클릭');
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => PostDetailPage(),
+                        ),
+                      );
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
@@ -71,12 +76,12 @@ class NotTemporaryBoardPage extends StatelessWidget {
                 // 이미지
                 Container(
                   width: double.infinity,
-                  height: 150,
+                  height: 300,
                   decoration: BoxDecoration(
                     border: Border.all(color: Colors.grey),
                     borderRadius: BorderRadius.circular(8),
                     image: const DecorationImage(
-                      image: AssetImage('assets/1.png'), // 두 번째 더미 이미지 경로
+                      image: AssetImage('assets/headset.png'), // 두 번째 더미 이미지 경로
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -86,7 +91,12 @@ class NotTemporaryBoardPage extends StatelessWidget {
                   right: 10,
                   child: ElevatedButton(
                     onPressed: () {
-                      print('등록 버튼 클릭');
+                      Navigator.pushReplacement(
+                        context,
+                        MaterialPageRoute(builder: (context) => PostDetailPage(),
+                        ),
+                      );
+
                     },
                     style: ElevatedButton.styleFrom(
                       padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),

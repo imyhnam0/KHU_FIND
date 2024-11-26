@@ -4,6 +4,8 @@ import 'signuppage.dart';
 import 'limshe.dart';
 import 'junsik.dart';
 import 'catego.dart';
+import 'chat.dart';
+
 
 void main() {
   runApp(const MyApp());
@@ -25,7 +27,7 @@ class MyApp extends StatelessWidget {
           bodyLarge: TextStyle(fontSize: 18, fontWeight: FontWeight.bold),
         ),
       ),
-      home: LoginPage(),
+      home: HomePage(),
     );
   }
 }
@@ -39,7 +41,7 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   final TextEditingController _searchController = TextEditingController();
-  final List<String> _dummyData = ['에어팟', '헤드셋', '할머니'];
+  final List<String> _dummyData = ['에어팟', '헤드셋', '지갑'];
   List<String> _filteredData = [];
 
   @override
@@ -69,8 +71,9 @@ class _HomePageState extends State<HomePage> {
       context: context,
       builder: (BuildContext context) {
         return AlertDialog(
-          shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-          backgroundColor: Colors.deepPurpleAccent.withOpacity(0.9),
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          backgroundColor: const Color.fromARGB(255, 92, 6, 31),
           title: const Text(
             '메뉴 선택',
             style: TextStyle(
@@ -95,7 +98,8 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const CategoryPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const CategoryPage()),
                   );
                 },
               ),
@@ -105,9 +109,9 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const TemporaryBoardPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const TemporaryBoardPage()),
                   );
-
                 },
               ),
               const SizedBox(height: 15),
@@ -116,7 +120,19 @@ class _HomePageState extends State<HomePage> {
                 onPressed: () {
                   Navigator.push(
                     context,
-                    MaterialPageRoute(builder: (context) => const NotTemporaryBoardPage()),
+                    MaterialPageRoute(
+                        builder: (context) => const NotTemporaryBoardPage()),
+                  );
+                },
+              ),
+              const SizedBox(height: 15),
+              _buildPopupMenuButton(
+                label: '채팅',
+                onPressed: () {
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                        builder: (context) => const ChatPage()),
                   );
                 },
               ),
@@ -187,7 +203,7 @@ class _HomePageState extends State<HomePage> {
           ),
         ),
         centerTitle: true,
-        backgroundColor: Colors.deepPurple,
+        backgroundColor: const Color.fromARGB(255, 92, 6, 31),
         elevation: 5,
         actions: [
           IconButton(
@@ -198,83 +214,83 @@ class _HomePageState extends State<HomePage> {
           ),
         ],
       ),
-      body: Stack(
-        children: [
-          Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [Colors.deepPurple, Colors.redAccent],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
+      body: Container(
+        color: Colors.white,
+        child: Stack(
+          children: [
+            Center(
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: TextField(
+                      controller: _searchController,
+                      decoration: InputDecoration(
+                        hintText: '검색어를 입력하세요',
+                        prefixIcon:
+                            const Icon(Icons.search, color: Colors.grey),
+                        filled: true,
+                        fillColor: Colors.white.withOpacity(0.8),
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(12),
+                          borderSide: BorderSide.none,
+                        ),
+                        contentPadding: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 15),
+                      ),
+                    ),
+                  ),
+                  const SizedBox(height: 20),
+                  Container(
+                    constraints: const BoxConstraints(maxHeight: 200),
+                    margin: const EdgeInsets.symmetric(horizontal: 16.0),
+                    child: _filteredData.isEmpty
+                        ? const Center(
+                            child: Text(
+                              '검색 결과가 없습니다.',
+                              style:
+                                  TextStyle(fontSize: 18, color: Colors.grey),
+                            ),
+                          )
+                        : ListView.builder(
+                            shrinkWrap: true,
+                            itemCount: _filteredData.length,
+                            itemBuilder: (context, index) {
+                              return ListTile(
+                                leading: const Icon(Icons.search,
+                                    color: Colors.redAccent),
+                                title: Text(
+                                  _filteredData[index],
+                                  style: const TextStyle(
+                                      fontSize: 18,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                onTap: () {
+                                  showDialog(
+                                    context: context,
+                                    builder: (context) => AlertDialog(
+                                      title: const Text('선택한 항목'),
+                                      content: Text(_filteredData[index]),
+                                      actions: [
+                                        TextButton(
+                                          onPressed: () =>
+                                              Navigator.pop(context),
+                                          child: const Text('닫기'),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                },
+                              );
+                            },
+                          ),
+                  ),
+                ],
               ),
             ),
-          ),
-          Center(
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  padding: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: TextField(
-                    controller: _searchController,
-                    decoration: InputDecoration(
-                      hintText: '검색어를 입력하세요',
-                      prefixIcon: const Icon(Icons.search, color: Colors.grey),
-                      filled: true,
-                      fillColor: Colors.white.withOpacity(0.8),
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(12),
-                        borderSide: BorderSide.none,
-                      ),
-                      contentPadding: const EdgeInsets.symmetric(vertical: 12, horizontal: 15),
-                    ),
-                  ),
-                ),
-                const SizedBox(height: 20),
-                Container(
-                  constraints: const BoxConstraints(maxHeight: 200),
-                  margin: const EdgeInsets.symmetric(horizontal: 16.0),
-                  child: _filteredData.isEmpty
-                      ? const Center(
-                    child: Text(
-                      '검색 결과가 없습니다.',
-                      style: TextStyle(fontSize: 18, color: Colors.grey),
-                    ),
-                  )
-                      : ListView.builder(
-                    shrinkWrap: true,
-                    itemCount: _filteredData.length,
-                    itemBuilder: (context, index) {
-                      return ListTile(
-                        leading: const Icon(Icons.search, color: Colors.redAccent),
-                        title: Text(
-                          _filteredData[index],
-                          style: const TextStyle(
-                              fontSize: 18, fontWeight: FontWeight.bold),
-                        ),
-                        onTap: () {
-                          showDialog(
-                            context: context,
-                            builder: (context) => AlertDialog(
-                              title: const Text('선택한 항목'),
-                              content: Text(_filteredData[index]),
-                              actions: [
-                                TextButton(
-                                  onPressed: () => Navigator.pop(context),
-                                  child: const Text('닫기'),
-                                ),
-                              ],
-                            ),
-                          );
-                        },
-                      );
-                    },
-                  ),
-                ),
-              ],
-            ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
